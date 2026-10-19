@@ -12,8 +12,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Build Frontend
+  build-and-scan:
+    name: Build and Security Scan Frontend
     runs-on: ubuntu-latest
 
     steps:
@@ -31,3 +31,13 @@ jobs:
 
       - name: Build frontend
         run: npm run build
+
+      - name: Run Trivy filesystem vulnerability scan
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'
