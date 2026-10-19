@@ -13,7 +13,7 @@ ENV VITE_API_URL=${VITE_API_URL}
 
 RUN npm run build
 
-FROM nginx:1.28-alpine
+FROM nginx:stable-alpine
 
 # Apply available Alpine security updates.
 RUN apk upgrade --no-cache
