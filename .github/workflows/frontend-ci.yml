@@ -84,7 +84,7 @@ jobs:
       - name: Build and push frontend image
         if: startsWith(github.ref, 'refs/tags/v')
         uses: docker/build-push-action@v6
-         with:
+        with:
           context: .
           push: true
           tags: |
